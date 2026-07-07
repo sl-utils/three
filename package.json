@@ -1,0 +1,59 @@
+{
+  "name": "@sl-utils/three",
+  "version": "1.0.0",
+  "description": "基于three的内部库",
+  "author": "wuqj",
+  "type": "module",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "dev": "vite --open /demo/App.html",
+    "build": "tsc -p tsconfig.json && node scripts/copy-build-assets.mjs && npm run build:types",
+    "build:vite": "vite build",
+    "build:types": "tsc -p tsconfig.types.json && node scripts/postbuild-types.mjs"
+  },
+  "files": [
+    "build/",
+    "src/",
+    "types/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./build/index.js",
+      "default": "./build/index.js"
+    },
+    "./styles.css": "./src/styles/index.css"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.3.4",
+    "dat.gui": "^0.7.9",
+    "gsap": "^3.12.2",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.185.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "file-loader": "^6.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.7.2",
+    "vite": "^7.1.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sl-utils/cesium.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sl-utils/cesium/issues"
+  },
+  "homepage": "https://github.com/sl-utils/cesium#readme"
+}

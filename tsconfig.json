@@ -1,0 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compilerOptions": {
+    /**启用所有严格类型检查选项*/
+    "strict": false,
+    /**关闭“所有路径必须返回值”的检查*/
+    "noImplicitReturns": false,
+    /**在严格的 null检查模式下， null和 undefined值不包含在任何类型里*/
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "./build",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "lib": [
+      "es2020",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "types/assets.d.ts"
+  ],
+  "exclude": []
+}
