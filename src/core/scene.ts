@@ -32,7 +32,7 @@ export class SLTScene<T extends string | null = null> extends TEvent<SLTEvents |
         this.tele = new TElement(dom, this);
         this.time = new Time(this);
         this.tcamera = new TCamera(this);
-        this.renderer = new TRenderer(dom, optRender);
+        this.trenderer = new TRenderer(dom, optRender);
         this.physice = new Cannon();
         this.resource = new TResource(this);
         this.scene.add(this.container);
@@ -47,7 +47,7 @@ export class SLTScene<T extends string | null = null> extends TEvent<SLTEvents |
     public readonly tele: TElement
     public readonly time: Time
     public readonly scene: Scene
-    public readonly renderer: TRenderer
+    public readonly trenderer: TRenderer
     public readonly physice: Cannon
     /**相机 */
     public readonly tcamera: TCamera
@@ -81,19 +81,19 @@ export class SLTScene<T extends string | null = null> extends TEvent<SLTEvents |
     private readonly options: TOptScene;
     /**销毁自身所有3D对象  */
     public kill() {
-        const { tele, time, scene, renderer, options } = this;
+        const { tele, time, scene, trenderer, options } = this;
         super.kill();
         tele.kill();
         time.kill();
         scene.clear();
-        renderer.kill();
+        trenderer.kill();
         Reflect.deleteProperty(SLTScenes, options.id)
     }
     /**开启所有的事件监听 */
     private openListener() {
-        const { ifCannon } = this.options, { renderer, scene, tcamera, tele, tlabels } = this;
+        const { ifCannon } = this.options, { trenderer, trenderer:{renderer}, scene, tcamera, tele, tlabels } = this;
         this.on('TICK', (time: Time) => {
-            renderer.render(scene, tcamera.camera, this.renderFn);
+            trenderer.render(scene, tcamera.camera, this.renderFn);
             tlabels.render();
             if (ifCannon) {
                 // physice.world.step(1 / 60, time.delta, 3);
@@ -109,10 +109,10 @@ export class SLTScene<T extends string | null = null> extends TEvent<SLTEvents |
             /**标签调整 */
             tlabels.resize();
             /**渲染器调整 */
-            renderer.instance.setSize(width, height);
-            renderer.instance.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         });
-        Gui.on(renderer.instance, '渲染器', [
+        Gui.on(renderer, '渲染器', [
             {
                 param: 'toneMapping',
                 name: '色调映射',

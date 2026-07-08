@@ -3,7 +3,7 @@ import { SLTScene } from "./scene";
 
 /**记录时间和调用动画animation */
 export class Time {
-    constructor(private three: SLTScene) {
+    constructor(private tscene: SLTScene) {
         this.tick = this.tick.bind(this);
         this.tick();
     }
@@ -34,7 +34,7 @@ export class Time {
         if (that.delta > 60) that.delta = 60;
         that.elapsed = current - that.start;
         that.current = current;
-        this.three.trigger('TICK', [this])
+        this.tscene.trigger('TICK', [this])
     }
     /**停止动画*/
     public stop() {
@@ -43,6 +43,6 @@ export class Time {
     /**销毁动画以及相关的回调 */
     public kill() {
         this.stop();
-        this.three.off('TICK');
+        this.tscene.off('TICK');
     }
 }

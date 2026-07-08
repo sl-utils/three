@@ -97,9 +97,9 @@ export class Load {
 		orth.position.set(0, -0.03, 1);
 		orth.lookAt(0, -0.03, 0);
 		resource.load(RESOURCES_SCENE_LOAD);
-		tscene.renderer.instance.setClearColor(new Color(0xffffff), 0.0);
+		tscene.trenderer.renderer.setClearColor(new Color(0xffffff), 0.0);
 		tscene.renderFn = () => {
-			tscene.renderer.instance.render(tscene.scene, orth);
+			tscene.trenderer.renderer.render(tscene.scene, orth);
 		};
 	}
 	/**加载完成后隐藏 */

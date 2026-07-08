@@ -3,10 +3,7 @@ import { Loaders } from "./loaders";
 import { AnimationClip, BufferGeometry, Camera, CubeTexture, DataTexture, Group, NormalBufferAttributes, Object3DEventMap } from "three";
 import { Font, GLTF } from "three/examples/jsm/Addons.js";
 import { TResourceInfo } from "src/types";
-
-
 type DBThreeType = 'Image' | ''
-
 /**数据库存储的资源 */
 interface DBStoreGLTF {
     /**资源名称 */

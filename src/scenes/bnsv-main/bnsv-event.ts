@@ -56,8 +56,8 @@ export class BnsvEvent {
 			{
 				keyStates,
 				tele: { mouse },
-				renderer: {
-					instance: {
+				trenderer: {
+					renderer: {
 						domElement: { classList },
 					},
 				},

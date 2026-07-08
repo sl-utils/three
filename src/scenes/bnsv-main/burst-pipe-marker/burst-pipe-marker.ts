@@ -141,7 +141,7 @@ export class BurstPipeMarkerManager {
 		const raycaster = new Raycaster();
 		const mouse = new Vector2();
 
-		const rendererDom = this.scene.renderer.instance.domElement;
+		const rendererDom = this.scene.trenderer.renderer.domElement;
 
 		// 监听鼠标移动
 		scene.on('MOUSE_MOVE', (event: MouseEvent) => {

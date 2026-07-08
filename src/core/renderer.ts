@@ -11,7 +11,7 @@ export class TRenderer {
             isGPU = false;
             console.warn("No WebGPU support , try to use WebGL");
         }
-        const renderer = this.instance = isGPU ? new WebGPURenderer({ antialias: true }) : new WebGLRenderer({
+        const renderer = this.renderer = isGPU ? new WebGPURenderer({ antialias: true }) : new WebGLRenderer({
             antialias: true,
             depth: true,
             alpha: true,
@@ -22,10 +22,10 @@ export class TRenderer {
         ele.appendChild(renderer.domElement);
         this.setRenderOpt(opt);
     }
-    public instance: WebGLRenderer | WebGPURenderer;
+    public renderer: WebGLRenderer | WebGPURenderer;
     /**渲染 */
     public render(scene: Scene, camera: Camera, renderFn?: Function) {
-        const { instance: renderer } = this;
+        const {  renderer } = this;
         if (renderer instanceof WebGPURenderer) {
             renderer.renderAsync(scene, camera)
         } else {
@@ -34,15 +34,15 @@ export class TRenderer {
     }
     /**销毁 */
     public kill() {
-        const renderer = this.instance, { domElement } = renderer;
+        const renderer = this.renderer, { domElement } = renderer;
         domElement.innerHTML = '';
         domElement.remove()
         renderer.dispose();
-        this.instance = null;
+        this.renderer = null;
     }
     /**渲染器配置 */
     private setRenderOpt(opt: TOptRenderer = {}) {
-        const { instance: renderer } = this, {
+        const {  renderer } = this, {
             clearColor = 0xFFFFFF,
             clearAlpha = 1,
             pixelRatio = 1,
